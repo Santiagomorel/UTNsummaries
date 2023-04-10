@@ -112,4 +112,81 @@ Gato gary = new Gato();
 *Una clase que no puede ser instanciada*
 * Tienen clases hijas, algunas clases heredan de ella.
 * Estas clases, las hijas, sí pueden ser instanciadas siempre y cuando sean *"concretas"*.
-* Una clase es concreta -> No es abstacta
+* Una clase es concreta -> No es abstracta
+
+*¿Para qué sirven?*
+* Se puede evitar repetir código y lógica entre clases haciéndolas heredar de una clase abstracta en común.
+* En las clases abstractas podemos escribir el código en común que tengan muchas clases, ya sea métodos o atributos.
+
+### **POO - Polimorfismo**
+* Característica que nos permite trabajar con objetos distintos en forma transparente.
+* Decimos que dos o más objetos son polimórficos para un tercero si éste puede trabajar indistintamente con cualquiera de ellos.
+
+*Dos o mas objetos son polimórficos si entienden los mismos mensajes.*
+
+### **POO - Interface**
+* Es un contrato en el cual se establecen los métodos que debe implementar un objeto.
+* En la interface solo se escriben las firmas de los métodos, es decir, sin cuerpo ni desarrollo de los mismos.
+
+*Cuando objeto implementa una interface se dice que cumple con esa interface.*
+
+### **POO - Colecciones**
+* Una colección es un objeto que dentro suyo contiene referencias a otros objetos.
+* Su responsabilidad es contener y manejar un grupo de objetos.
+* Las colecciones, por lo general, pueden contener objetos de distintas clases siempre y cuando compartan al menos una interface.
+
+## **Diagrama de Clases *(UML)***
+Es un diagrama estático que muestra y describe cierta porción de la estructura de un sistema mostrando las clases con sus atributos, sus métodos y sus relaciones con otras clases.
+
+*No necesariamente existe un único diagrama de clases para representar un sistema*
+
+### **Clases**
+![img2](./imgs/img2.png)
+### **Atributos**
+![img3](./imgs/img3.png)
+### **Mensajes/Métodos**
+![img4](./imgs/img4.png)
+### **Interfaces**
+![img5](./imgs/img5.png)
+
+### **Relaciones - Asociación Simple Dirigida**
+* Una clase A tiene como atributo (de objeto) a un objeto de la clase B.
+* Se suele leer “A tiene un B”.
+* En el ejemplo, “Una vivienda tiene una constructora”.
+
+![img6](./imgs/img6.png)
+
+### **Relaciones - Asociación Múltiple Dirigida**
+* Se puede especificar la multiplicidad de las relaciones ya sea dejando explícito el número o utilizando un “*” en caso de que sea una colección.
+* En el ejemplo, “Una vivienda tiene (o puede tener) muchos habitantes, y un habitante solamente vive (o puede vivir) en una única casa”.
+* “Una vivienda tiene una colección de habitantes”.
+
+![img7](./imgs/img7.png)
+
+### **Relaciones - Agregación**
+* Es una representación jerárquica que indica a un objeto y las partes que componen ese objeto. Es decir, representa relaciones en las que un objeto es parte de otro, pero aun así debe tener existencia en sí mismo.
+
+![img8](./imgs/img8.png)
+
+### **Relaciones - Composición**
+* La composición es similar a la agregación, representa una relación jerárquica entre un objeto y las partes que lo componen, pero de una forma más fuerte. En este caso, los elementos que forman parte no tienen sentido de existencia cuando el primero no existe.
+
+![img9](./imgs/img9.png)
+
+### **Relaciones - Generalización ("Herencia")**
+* Se utiliza cuando una clase hereda de otra.
+* Se suele leer “A hereda de B”.
+
+![img10](./imgs/img10.png)
+
+### **Relaciones - Dependencia ("Uso")**
+* Se utiliza para representar que una clase requiere de otra para ofrecer cierta funcionalidad.
+* Se suele leer “A usa o conoce a B”.
+
+![img11](./imgs/img11.png)
+
+### **Relaciones - Realización ("Implementación")**
+* Se utiliza para representar que una clase Implementa una Interface
+* Se suele leer “A implementa a B, siendo B una interface”
+
+![img12](./imgs/img12.png)
