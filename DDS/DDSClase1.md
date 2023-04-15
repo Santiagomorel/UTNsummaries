@@ -105,14 +105,14 @@ Son todas las necesidades y deseos pedidos por el cliente y las personas involuc
 
 *¿Cómo se hace?*
 ```java
-Gato gary = new Gato();
+Gato bolaDeNieve2 = new Gato();
 ```
 
 ### **POO - Clase Abstracta**
 *Una clase que no puede ser instanciada*
 * Tienen clases hijas, algunas clases heredan de ella.
 * Estas clases, las hijas, sí pueden ser instanciadas siempre y cuando sean *"concretas"*.
-* Una clase es concreta -> No es abstracta
+* Una clase es concreta -> No es abstracta.
 
 *¿Para qué sirven?*
 * Se puede evitar repetir código y lógica entre clases haciéndolas heredar de una clase abstracta en común.
@@ -188,7 +188,7 @@ Es un diagrama estático que muestra y describe cierta porción de la estructura
 ![img11](./imgs/clase1/img11.png)
 
 ### **Relaciones - Realización ("Implementación")**
-* Se utiliza para representar que una clase Implementa una Interface
-* Se suele leer “A implementa a B, siendo B una interface”
+* Se utiliza para representar que una clase Implementa una Interface.
+* Se suele leer “A implementa a B, siendo B una interface”.
 
 ![img12](./imgs/clase1/img12.png)
