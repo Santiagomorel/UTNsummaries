@@ -34,6 +34,8 @@ Disciplina o ciencia que estudia la manera de cifrar y descifrar los mensajes co
   * Cifrado por sustitución.
 * **Criptografía Moderna** -> seguridad basada en el **secreto de la clave.**
 
+---
+
 ### **Criptografía Clásica - Transposición**
 * También conocido como **permutación**. Los caracteres se cambian de posición según ciertas reglas.
 * El criptograma tendra los mismos caracteres del mensaje pero con una distribución diferente.
@@ -152,6 +154,8 @@ Disciplina o ciencia que estudia la manera de cifrar y descifrar los mensajes co
 
 ![img13](./imgs/clase3/img13.png)
 
+---
+
 ## **Dicotomía Ideológica - Clásica vs Moderna**
 
 ![img14](./imgs/clase3/img14.png)
@@ -162,4 +166,193 @@ Disciplina o ciencia que estudia la manera de cifrar y descifrar los mensajes co
 * La seguridad del sistema deberá residir solamente en el secreto de una clave y no en las funciones de cifrado.
 * La fortaleza del sistema se entenderá como la imposibilidad computacional de romper el cifrado o encontrar una clave secreta a partir de una pública.
 
-### **Criptografía Moderna - Pilares**
+---
+
+## **Criptografía Moderna - Pilares**
+|Teoría de la Infromación|Teoría de los Números|Teoría de la Complejidad Algorítmica|
+|:-:|:-:|:-:|
+|Estudio de la cantidad de información contenida en los mensajes y claves, así como su entropía|Estudio de las matemáticas discretas y cuerpos finitos que permiten las operaciones de cifrado y descifrado|Estudio de la clasificación de los problemas como computacionalmente tratables o intratables|
+
+### **Criptografía Moderna - Teoría de la Información**
+* Surgió en 1948
+* Estudios hechos por Claude Shannon posteriores a la 2da Guerra Mundial permitieron:
+  * Cuantificar la cantidad de información.
+  * Medir la entropía de la información.
+  * Definir un sistema con secreto perfecto.
+  * Calcular la redundancia y el ratio del lenguaje.
+  * Encontrar la distancia de unicidad.
+
+*La teoría de la información mide la cantidad de información de un mensaje a través del número medio de bits necesario para codificar todos los posibles mensajes con un codificador óptimo*.
+
+### **Criptografía Moderna - Teoría de los Números**
+|Pertenecen a la teoría las cuestiones de:|Se investigan propiedades de funciones multiplicativas y otras|
+|-|-|
+|• Divisibilidad|• Función de Moebius|
+|• Algoritmo de Euclides para calcular el MCD |• Función de Euler|
+|• Factorización de los enteros como producto de números primos|• Sucesiones de números enteros|
+|• Búsqueda de los números perfectos|• Factoriales|
+|• Congruencias|• Números de Fibonacci|
+|• Conjunto completo de restos||
+
+### **Criptografía Moderna - Teoría de la Complejidad Algorítmica**
+* Permite conocer la fortaleza de un algoritmo y tener así una idea de svulnerabilidad computacional.
+* **Complejidad Computacional** ->
+  * Los algoritmos pueden clasificarse según su tiempo de ejecución, en función del tamaño u orden de la entrada.
+  * Hablamos así de complejidad:
+    * **Polinominal** -> comportamiento similar al lineal
+    * **Polinominal no Determinísta** -> comportamiento exponencial
+
+*Da lugar a problemas "fáciles" y problemas "difíciles"*
+
+---
+
+## **Criptografía Moderna - Clasificación**
+
+![img15](./imgs/clase3/img15.png)
+
+### **Criptografía Moderna - Cifrado de Flujo**
+* Usa el concepto de Vernam ->
+  * El espacio de las claves / llaves es igual o mayor que el espacio de los mensajes.
+  * Las claves / llaves deben ser equiprobables.
+  * El flujo de llaves se usa una sola vez y luego se destruye (one-time pad).
+* El algoritmo de cifrado se aplica a un elemento de informacion mediante un generador de claves pseudoaleatorio y de mayor longitud que el mensaje.
+* El cifrado se hace bit a bit.
+
+![img16](./imgs/clase3/img16.png)
+
+### **Criptografía Moderna - Cifrado en Bloque**
+* El mensaje claro/plano se agrupa en bloques antes de aplicar un algoritmo a cada uno con la misma clave.
+* El tamaño del boque no debe ser muy pequeño (facilita ataques de estadística del lenguaje) ni muy grande (lento, bajo rendimiento).
+* Las operaciones sobre los bloques incluyen sustitución y permutación (AES) y redes feistel (DES).
+* La forma en la que se cifran/decifran esos bloques, se lo llama “modo de cifrado” y son ECB, CBC, CTR, OFB, CFB.
+
+![img17](./imgs/clase3/img17.png)
+
+### **Criptografía Moderna - Sistema de llave secreta**
+* Llamados criptosistemas simétricos.
+* Con la misma clave se cifra y se descifra.
+  * No es posible enviar la llave de forma segura a través de un medio inseguro.
+* Es veloz.
+* Con una llave pequeña, se obtiene alta seguridad.
+* Ataque posible: Fuerza bruta.
+* Ejemplos:
+  * DES
+  * AES / Rijnadel
+  * Salsa 20
+  * RC5
+  * Blowfish
+
+![img18](./imgs/clase3/img18.png)
+
+### **Criptografía Moderna - Sistema de llave pública**
+* Llamados criptosistemas asimétricos.
+* Cada usuario posee un par de claves, una privada y otra pública.
+  * Lo que se cifra con una clave, se descifra con la otra.
+* Se inventaron para evitar el problema de intercambio de llaves de los sistemas simétricos.
+* La seguridad yace en la dificultar para saber la clave privada a partir de la pública.
+* Usan las funciones unidireccionales con trampa.
+* Usa llaves de tamaño mayor a las simétricas que son más lentas para procesar. 
+* Ejemplos:
+  * Curvas elípticas
+  * Diffie-Hellman
+  * RSA
+  * El Gamal
+
+![img19](./imgs/clase3/img19.png)
+
+---
+
+## **Criptografía Moderna - Usos**
+
+### **Firma digital**
+* El emisor envía un mensaje firmado y el receptor puede identificar que el emisor envió ese mensaje y que no fue alterado en el camino.
+
+![img20](./imgs/clase3/img20.png)
+
+### **Certificado digital**
+* Fichero electrónico emitido por una autoridad certificante pedido por alguna entidad.
+* Los navegadores vienen con certificados raíz preinstalados.
+* Contiene los datos del firmante (clave pública, identidad, etc), versión, validez, algoritmo de hash, etc.
+
+![img21](./imgs/clase3/img21.png)
+
+---
+
+## **Criptografía Moderna - Cuántica**
+* Usa la mecánica cuántica para garantizar la confidencialidad.
+* Si un atacante espía durante la creación de la llave secreta, el proceso se altera (teorema de no clonado).
+* Intercambio de llaves cuánticas: QKD (método de comunicación).
+* Podría romper la criptografía actual.
+
+### **Criptoanálisis - Tipos de Ataques**
+* **Fuerza bruta** -> Intentan probar todas las llaves posibles.
+* **Analíticos** -> Usan algoritmos y manipulación algebraica para reducir la complejidad del ataque.
+* **Estadísticos** -> Utilizan debilidades estadísticas del diseño del sistema.
+* **Implementación** -> No ataco al algoritmo sino como fue implantado.
+* **Solo texto cifrado** -> El atacante intenta desencriptar el texto cifrado directamente.
+* **Texto plano conocido** -> El atacante intenta desencriptar el texto cifrado conociendo parte del texto plano.
+* **Texto plano elegido** -> El atacante obtiene texto cifrado correspondiente a un texto plano conocido.
+* **Texto cifrado elegido** -> El atacante obtiene texto plano correspondiente a un texto cifrado predeterminado.
+
+---
+
+## **Algoritmos de Hash**
+* Función criptográfica de una vía para generar salidas que representen de manera casi unívoca a la entrada.
+  * "Hash" es el resultado de la función y el tipo de algoritmo.
+  * La salida debe tener tamaño fijo independientemente del tamaño de la entrada.
+* Ejemplos:
+  * MD2 / MD4 / MD5
+  * SHA-1
+  * SHA-2
+
+![img22](./imgs/clase3/img22.png)
+
+* **Propiedades**
+  * Unidireccionalidad
+  * Compresión
+  * Facilidad de cálculo
+  * Difusión
+
+* **Aplicaciones**
+  * Contraseñas
+  * Firma Digital
+  * Integridad
+  * Autenticación
+
+### **Sal, pimienta, semilla**
+* Sal
+  * Agregar un valor a lo que se quiere cifrar para que produzca otro resultado
+  * Puede no ser secreto, pero debería ser único.
+  * Se usa para guardar hashes de contraseñas.
+    * Generalmente se guarda junto al hash.
+* Pimienta
+  * Similar a la sal, pero secreto.
+  * Generalmente se usa 1 solo character al final de la contraseña.
+  * Se puede combinar con la sal.
+  * No se guarda con el hash.
+* Semilla
+  * Valor usado para iniciar un numero aleatorio.
+  * Tiene que ser secreto.
+  * Se usa para el vector inicial.
+
+---
+
+## **Esteganografía**
+* Conjunto de técnicas para comunicar un mensaje ocultando la información dentro de un conjunto de datos para que pase desapercibida.
+  * Fotografías, audio y video.
+  * Puede ser muy difícil de detectar.
+* Incluso si se considera que un archivo analizado no contiene información oculta, aun puede tenerla y no haber sido detectada.
+* En el caso de encontrar la información, aun puede estar encriptada y resultar ilegible de manera directa.
+
+![img23](./imgs/clase3/img23.png)
+
+---
+
+## **Estegoanálisis**
+* Debido a que la esteganografía deja huellas en el medio de transporte utilizado, las técnicas de estegoanálisis intentan detectar estos cambios, usando incluso complejos mecanismos estadísticos.
+* Tipos:
+  * **Estegoanálisis manual** -> Buscar de forma manual diferencias entre el fichero original y el fichero con esteganografía, observando cambios en la estructura para localizar datos ocultos.
+    * Se necesita tener un fichero original.
+    * Es casi imposible descifrar el mensaje.
+  * **Estegoanálisis estadístico** -> consiste en el cotejo de la frecuencia de distribución de colores en el caso de un fichero de imagen esteganografiado. Es una técnica lenta para la que se deben emplear software especializado. Aunque estos programas suelen buscar pautas para ocultar los mensajes que utilizan los programas más habituales de esteganografía, lo que los hace muy eficaces cuando se trata de mensajes ocultos con programas.
+    * Los mensajes ocultados manualmente son casi imposibles de encontrar para estos programas.
