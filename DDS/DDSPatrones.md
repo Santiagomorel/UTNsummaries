@@ -89,9 +89,9 @@
     * Los “pasos” no necesariamente son 2, sino que pueden ser varios.
 
 ### **¿Qué proporciona su uso?**
-*  Mayor mantenibilidad debido a que el comportamiento de los “pasos” es facilmente localizable.
-*  Alta cohesión en todas las clases involucradas (abstracta y concretas).
-*  Extensibilidad para agregar nuevas clases concretas que definan nuevos comportamientos para los pasos.
+* Mayor mantenibilidad debido a que el comportamiento de los “pasos” es facilmente localizable.
+* Alta cohesión en todas las clases involucradas (abstracta y concretas).
+* Extensibilidad para agregar nuevas clases concretas que definan nuevos comportamientos para los pasos.
 
 ### **Code smells que soluciona / evita de forma directa**
 * Código duplicado
@@ -102,8 +102,8 @@
 
 ## **Strategy - Patrón de Comportamiento**
 ### *¿Qué hace?*
-*  Encapsula distintas formas (o algoritmos) de resolver el mismo problema en diferentes clases.
-*  Permite intercambiar en momento de ejecución la forma en que un tercero 
+* Encapsula distintas formas (o algoritmos) de resolver el mismo problema en diferentes clases.
+* Permite intercambiar en momento de ejecución la forma en que un tercero 
 resuelve un problema.
 
 ### *Se sugiere su utilización cuando:*
@@ -154,9 +154,9 @@ resuelve un problema.
     * Las instancias de cada estrategia pueden ser reutilizables.
 
 ### **¿Qué proporciona su uso?**
-*   Mayor cohesión a la clase Contexto.
-*   Mayor mantenibilidad debido a que el comportamiento por cada algoritmo es fácilmente localizable.
-*   Extensibilidad para incoporar nuevos algoritmos/formas de realizar las acciones.
+* Mayor cohesión a la clase Contexto.
+* Mayor mantenibilidad debido a que el comportamiento por cada algoritmo es fácilmente localizable.
+* Extensibilidad para incoporar nuevos algoritmos/formas de realizar las acciones.
 
 ### **Code smells que soluciona / evita de forma directa**
 * Métodos largos
@@ -195,11 +195,99 @@ resuelve un problema.
     * Puede no existir N adapters concretos.
 
 ### **¿Qué proporciona su uso?**
-*  Mayor mantenibilidad debido al nulo acoplamiento entre el cliente y la clase adaptada.
-*  Mayor cohesión de la clase cliente debido a la delegación de cierto comportamiento en el adapter.
-*  Mayor facilidad de testeo ya que se podría implementar un mock de AdapterConcreto
+* Mayor mantenibilidad debido al nulo acoplamiento entre el cliente y la clase adaptada.
+* Mayor cohesión de la clase cliente debido a la delegación de cierto comportamiento en el adapter.
+* Mayor facilidad de testeo ya que se podría implementar un mock de AdapterConcreto
 
 ### **Code smells que soluciona / evita de forma directa**
 * Herencia rechazada
 * Clases alternativas con diferentes interfaces
+* Clase de biblioteca incompleta
+
+---
+
+# **Composite - Patrón Estructural**
+### *¿Qué hace?*
+* Compone objetos en estructura de árbol.
+* Permite que un cliente trate de forma polimórfica a un objeto particular y a un conjunto combinado de ellos.
+
+### *Se sugiere su utilización cuando:*
+* Se requiere que un tercero utilice de forma indistinta (polimórfica) a un objeto particular o a un conjunto compuesto de ellos.
+* Se debe permitir que un objeto esté compuesto por varios objetos simples o por otros objetos compuestos.
+
+### *Componentes:*
+* **_Interface / Clase abstracta Componente_** -> Define las firmas de los métodos que son comunes entre los elementos simples y los elementos complejos / compuestos. Su propósito es que un tercero conozca su interfaz para que utilice poliórficamente los elementos simples y los compuestos.
+* **_Hoja_** -> Objetos simples que cumplen con la interfaz del Componente. Contienen la implementación más "gruesa" ya que, en general, no delegan el trabajo a nadie más.
+* **_Compuesto_** -> Clase que, también, cumple con la interfaz del Componente. Contiene una colección de Componentes, motivo por el cual puede contener tanto objetos simples (hojas) como otros objetos compuestos. Al recibir un mensaje, delega el trabajo en los componentes que tiene, luego junta las respuestas, las procesa y, por último, otorga una respuesta final simplificada.
+
+### **Dominio propuesto**
+*Nos solicitaron el desarrollo de una aplicación que le permita a los usuarios organizar su lista de tareas diarias, para eso se decidió separar a las tareas en:*
+* Tareas simples: que involucran una sola acción como lo puede ser: "Ir al gimnasio"
+* Tareas compuestas: involucran dos o más tareas que pueden ser simples o a su vez compuestas como puede ser el caso de: ""Hacer compras", que incluye "Comprar leche" y "Comprar pan"
+
+### **Diagrama de Clases**
+![img16](./imgs/patrones/img16.png)
+
+### **Implementación**
+![img17](./imgs/patrones/img17.png)
+
+### **Estructura genérica**
+![img18](./imgs/patrones/img18.png)
+  * Consideraciones:
+    * El compuesto soporta contener (o estar compuesto) objetos simples (hojas) u objetos compuestos.
+    * El método operación del Compuesto no necesariamente realiza un forEach: podría llamar a cualquier método de colección.
+    * El compuesto puede tener cualquier tipo de colección, no necesariamente alguna implementación de List.
+
+### **¿Qué proporciona su uso?**
+* Extensibilidad para crear nuevos compuestos que agreguen nuevo comportamiento.
+* Extensibilidad para crear nuevas hojas que agreguen nuevo comportamiento.
+* Simplicidad para formar y tratar a una estructura de objetos compuestos.
+
+### **Code smells que soluciona / evita de forma directa**
+* Clase Dios
+* Métodos largos
+* Código duplicado
+
+---
+
+# **Decorator - Patrón Estructural**
+### *¿Qué hace?*
+* Agrega funcionalidades dinámicamente a un objeto sin romper su interfaz.
+* Intercepta mensajes.
+
+### *Se sugiere su utilización cuando:*
+* Se requiere agregar y / o quitar funcionalidades / responsabilidades a un objeto en momento de ejecución.
+* Existen condicionales que restringen / amplían las acciones que realiza un objeto frente a la recepción de un mensaje.
+
+### *Componentes:*
+* **_Clase abstracta Componente_** -> Clase abstracta (o interface) que contiene la firma del método que se quiere interceptar.
+* **_Clase Componente Concreto_** -> Clase que hereda (o implementa, si fuera una interface) de la clase Componente y que define el comportamiento por defecto del método que se pretende interceptar.También conocida como “la clase a decorar”.
+* **_Clase abstracta Decorator_** -> Clase abstracta que contiene referencia a la clase Componente. Permite que una clase “decorada” sea envuelta por otra. Define el método que van a interceptar los decoradores concretos.
+* **_Decoradores concretos_** -> Clases que heredan de la clase Decorator, encargadas de interceptar el mensaje en cuestión, agregando o quitando funcionalidades.
+
+### **Dominio propuesto**
+*Se requiere desarrollar una maquina expendedora de café, donde cada usuario puede elegir el tipo teniendo en cuenta que por el momento hay tres tipos:*
+* Con leche: el precio es el original más un 3%
+* Con crema: el precio es el original más un 5%
+* Con azúcar: el precio es el original más un 1%
+
+### **Diagrama de Clases**
+![img19](./imgs/patrones/img19.png)
+
+### **Implementación**
+![img20](./imgs/patrones/img20.png)
+
+### **Estructura genérica**
+![img21](./imgs/patrones/img21.png)
+  * Consideraciones:
+    * Los métodos no necesariamente son void.
+    * El método operación de los decoradores concretos pueden no llamar a la operación de su componente asociado (interceptar el mensaje de forma total).
+
+### **¿Qué proporciona su uso?**
+* Mayor cohesión en el componente concreto y en los decoradores concretos.
+* Extensibilidad para el agregado de nuevas responsabilidades sobre componentes ya creados.
+
+### **Code smells que soluciona / evita de forma directa**
+* Métodos largos
+* Sentencias switch
 * Clase de biblioteca incompleta
